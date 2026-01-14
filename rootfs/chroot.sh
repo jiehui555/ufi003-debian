@@ -41,6 +41,10 @@ sed -i 's/^.\?PermitRootLogin.*$/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/^.\?ALGO=.*$/ALGO=lzo-rle/g' /etc/default/zramswap
 sed -i 's/^.\?PERCENT=.*$/PERCENT=300/g' /etc/default/zramswap
 
+# Install My Pkg
+apt-get install -y vim curl wget git htop
+apt-get install -y nginx
+
 vmlinuz_name=$(basename /boot/vmlinuz-*)
 cat <<EOF > /tmp/info.md
 - 内核版本: ${vmlinuz_name#*-}
