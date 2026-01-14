@@ -28,7 +28,6 @@ EOF
 apt-get update
 apt-get full-upgrade -y
 apt-get install -y locales network-manager openssh-server systemd-timesyncd fake-hwclock zram-tools rmtfs qrtr-tools
-apt-get install -y vim curl wget git htop
 apt-get install -y /tmp/*.deb
 sed -i -e "s/# $LANG_TARGET UTF-8/$LANG_TARGET UTF-8/" /etc/locale.gen
 dpkg-reconfigure --frontend=noninteractive locales
@@ -41,6 +40,10 @@ sed -i "s/::1\t\tlocalhost/::1\t\tlocalhost $NAME/g" /etc/hosts
 sed -i 's/^.\?PermitRootLogin.*$/PermitRootLogin yes/g' /etc/ssh/sshd_config
 sed -i 's/^.\?ALGO=.*$/ALGO=lzo-rle/g' /etc/default/zramswap
 sed -i 's/^.\?PERCENT=.*$/PERCENT=300/g' /etc/default/zramswap
+
+# Install My Pkg
+apt-get install -y vim curl wget git htop
+apt-get install -y nginx
 
 vmlinuz_name=$(basename /boot/vmlinuz-*)
 cat <<EOF > /tmp/info.md
